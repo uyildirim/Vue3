@@ -15,5 +15,14 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "users": [
+    {
+      "name": "Chloe Cervantes",
+      "username": "tuxyk",
+      "email": "cilo@mailinator.com",
+      "password": "Cupidatat molestias ",
+      "id": 1
+    }
+  ]
 }
