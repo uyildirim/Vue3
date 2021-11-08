@@ -1,5 +1,5 @@
 <template>
-  <div id="sideBar" class="w-[305px] h-full bg-gray-100">
+  <div id="sideBar" class="w-[305px] h-full bg-gray-100 flex-shrink-0">
     <div class="pt-7 ml-8 pr-2 space-y-1">
       <!-- Folder -->
       <div class="p-2 bg-gray-200 bg-opacity-80 rounded">

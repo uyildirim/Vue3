@@ -2,7 +2,7 @@
   <div id="body">
     <header-page />
     <div class="hcalc h-screen flex">
-      <sidebar class="flex" />
+      <sidebar class="" />
       <content />
     </div>
   </div>
