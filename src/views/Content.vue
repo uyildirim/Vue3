@@ -17,11 +17,37 @@
       </div>
     </div>
     <div>
-      <div>
-        <textarea class="mt-2 w-full resize-none border" rows="3" cols="">
-          <button>ss</button>
-        </textarea>
+      <div class="flex flex-col border rounded mt-3">
+        <input
+          class="outline-none w-full px-1 pl-2 pt-2"
+          placeholder="ör., 2 günde bir Portekizce öğren #Öğrenme"
+          type="text"
+        />
+        <textarea
+          class="mt-2 px-2 w-full text-sm font-light outline-none resize-none"
+          rows="3"
+          placeholder="Açıklama"
+        ></textarea>
+        <div>
+          <div>
+            <Menu>
+              <MenuButton class="flex items-center gap-2 p-1 border rounded text-sm font-light m-2">
+                <CalendarIcon class="w-4 h-4" /> Zamanı ayarla</MenuButton
+              >
+              <MenuItems>
+                <MenuItem v-slot="{ active }">
+                  <a :class="{ 'bg-blue-500': active }" href="/account-settings">
+                    Account settings
+                  </a>
+                </MenuItem>
+              </MenuItems>
+            </Menu>
+            <!-- <v-calendar />
+            <v-date-picker v-model="date" /> -->
+          </div>
+        </div>
       </div>
+
       <div class="flex gap-2 items-center mt-2 group cursor-pointer">
         <PlusIcon
           class="
@@ -38,16 +64,23 @@
           >Görev ekle</span
         >
       </div>
+      <Calendar />
+      <DatePicker v-model="date" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from "@vue/reactivity";
+import { ref, reactive } from "vue";
+import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
+
 import { CalendarIcon, PlusIcon } from "@heroicons/vue/outline";
+// import { Calendar, DatePicker } from "v-calendar";
 
 const open = ref(false);
 const checked = ref(true);
+const date = new Date();
 </script>
 
-<style></style>
+<style scoped>
+</style>

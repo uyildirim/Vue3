@@ -10,6 +10,7 @@
   "dependencies": {
     "@headlessui/vue": "^1.4.1",
     "@heroicons/vue": "^1.0.5",
+    "v-calendar": "^3.0.0-alpha.6",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"
