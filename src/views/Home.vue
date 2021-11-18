@@ -1,6 +1,7 @@
 <template>
   <div id="body">
     <header-page />
+
     <div class="hcalc h-screen flex">
       <sidebar class="" />
       <content />
@@ -9,13 +10,15 @@
 </template>
 
 <script setup>
-import { computed, ref } from "@vue/reactivity";
+import { computed, ref } from "vue";
 
 import HeaderPage from "./HeaderPage.vue";
 import Sidebar from "./Sidebar.vue";
 import Content from "./Content.vue";
 
-const test = ref("ee");
+const test = (event) => {
+  console.log(event);
+};
 </script>
 
 <style scoped>

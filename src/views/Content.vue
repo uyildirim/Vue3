@@ -17,7 +17,10 @@
       </div>
     </div>
     <div>
-      <div class="flex flex-col border rounded mt-3">
+      <div
+        v-show="missionToggleAdd"
+        class="flex flex-col border rounded mt-3 transition-all duration-1000"
+      >
         <input
           class="outline-none w-full px-1 pl-2 pt-2"
           placeholder="ör., 2 günde bir Portekizce öğren #Öğrenme"
@@ -28,27 +31,56 @@
           rows="3"
           placeholder="Açıklama"
         ></textarea>
-        <div>
-          <div>
-            <Menu>
-              <MenuButton class="flex items-center gap-2 p-1 border rounded text-sm font-light m-2">
-                <CalendarIcon class="w-4 h-4" /> Zamanı ayarla</MenuButton
-              >
-              <MenuItems>
-                <MenuItem v-slot="{ active }">
-                  <a :class="{ 'bg-blue-500': active }" href="/account-settings">
-                    Account settings
-                  </a>
-                </MenuItem>
-              </MenuItems>
-            </Menu>
-            <!-- <v-calendar />
-            <v-date-picker v-model="date" /> -->
+        <div class="flex items-center justify-between">
+          <div class="w-36 m-2 flex items-center relative">
+            <Datepicker
+              v-model="date"
+              :clearable="true"
+              ref="dp"
+              :enableTimePicker="false"
+              :format="format"
+              :previewFormat="format"
+            >
+              <template #dp-input="{ value, onInput, onEnter, onTab }">
+                <div class="flex items-center gap-2 p-1 border rounded text-sm font-light">
+                  <CalendarIcon class="w-5 h-5" />
+                  <input
+                    placeholder="Zaman ayarla"
+                    class="w-full outline-none"
+                    type="text"
+                    :value="value"
+                  />
+                </div>
+              </template>
+              <template #calendar-header="{ index, day }">
+                <div :class="index === 5 || index === 6 ? 'red-color' : ''">
+                  {{ day }}
+                </div>
+              </template>
+              <template #action-select>
+                <p class="bg-green-600 text-white text-center" @click="selectDate">Uygula</p>
+              </template>
+              <template #clear-icon> x </template>
+            </Datepicker>
+            <BackspaceIcon
+              class="w-4 h-4 text-red-500 absolute right-2"
+              v-show="date"
+              @click="sil"
+            />
+          </div>
+          <div class="space-x-2 mr-2">
+            <button @click="sil" class="bg-red-600 text-white px-3 py-1 text-sm font-light">
+              İptal
+            </button>
+            <button class="bg-green-600 text-white px-3 py-1 text-sm font-light">Kaydet</button>
           </div>
         </div>
       </div>
 
-      <div class="flex gap-2 items-center mt-2 group cursor-pointer">
+      <div
+        @click="missionToggleAdd = !missionToggleAdd"
+        class="flex gap-2 items-center mt-2 group cursor-pointer"
+      >
         <PlusIcon
           class="
             w-4
@@ -64,23 +96,53 @@
           >Görev ekle</span
         >
       </div>
-      <Calendar />
-      <DatePicker v-model="date" />
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, computed, defineAsyncComponent } from "vue";
 import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 
-import { CalendarIcon, PlusIcon } from "@heroicons/vue/outline";
-// import { Calendar, DatePicker } from "v-calendar";
+import { CalendarIcon, PlusIcon, BackspaceIcon } from "@heroicons/vue/outline";
+
+import Datepicker from "vue3-date-time-picker";
+import "vue3-date-time-picker/dist/main.css";
+
+const ActionRow = defineAsyncComponent(() => import("./DatePicker/ActionRowCustom.vue"));
+
+const MonthYear = defineAsyncComponent(() => import("./DatePicker/MonthYearCustom.vue"));
+const monthYear = computed(() => MonthYear);
 
 const open = ref(false);
-const checked = ref(true);
-const date = new Date();
+const missionToggleAdd = ref(true);
+// const date = ref(new Date());
+const date = ref();
+const logg = () => {
+  console.log("log geldi");
+};
+const actionRow = computed(() => ActionRow);
+
+const sil = () => {
+  date.value = null;
+};
+
+const textInputOptions = ref({});
+const dp = ref();
+const selectDate = () => {
+  dp.value.selectDate();
+};
+const format = (date) => {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return `${day}/${month}/${year}`;
+};
 </script>
 
 <style scoped>
+.red-color {
+  color: red;
+}
 </style>
