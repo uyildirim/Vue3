@@ -1,5 +1,5 @@
 <template>
-  <div id="body">
+  <div id="body" class="">
     <header-page />
 
     <div class="hcalc h-screen flex">
