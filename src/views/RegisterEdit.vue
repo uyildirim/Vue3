@@ -18,52 +18,40 @@
         <label class="block">Password</label>
         <input v-model="userData.password" class="border w-full" type="text" name="password" />
       </div>
-      <button @click="addUserData" class="bg-green-500 text-gray-50 py-2 px-3 rounded">Submit</button>
-    </div>
-    <div class="flex h-full w-full mx-3 shadow p-3">
-      <table class="w-full">
-        <tr class="bg-gray-200">
-          <td>Name</td>
-          <td>Username</td>
-          <td>Email</td>
-          <td>Password</td>
-          <td>Edit</td>
-        </tr>
-        <tbody class="divide-y">
-          <tr v-for="user in users" :key="user.id">
-            <td>{{ user.name }}</td>
-            <td>{{ user.username }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.password }}</td>
-            <td><router-link :to="{ path: '/register/' + user.id }">Edit</router-link></td>
-          </tr>
-        </tbody>
-      </table>
+      <button @click="updateUserData" class="bg-green-500 text-gray-50 py-2 px-3 rounded">Submit</button>
     </div>
   </div>
-  <!-- {{ userData }} -->
+  {{ paramsId }}
+  {{ getData }}
 </template>
 
 <script setup>
 import { computed, ref } from "vue";
+import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import axios from "axios";
+import router from "../router";
 const store = useStore();
+const route = useRoute();
+const getData = ref();
 const users = ref(computed(() => store.getters.getUserData));
 
+const paramsId = route.params.id;
 const userData = ref({
   name: null,
   username: null,
   email: null,
   password: null,
 });
-const addUserDataA = () => {
-  store.commit("setUserData", { ...userData.value });
+
+const updateUserData = () => {
+  axios.patch("http://localhost:3000/users/" + paramsId, userData.value).then((res) => {
+    console.log(res.data);
+  });
+  router.back();
 };
-const addUserData = () => {
-  store.dispatch("saveData", userData.value);
-};
-store.dispatch("getAllUserData");
+
+axios.get("http://localhost:3000/users/" + paramsId).then((res) => (userData.value = res.data));
 </script>
 
 <style></style>

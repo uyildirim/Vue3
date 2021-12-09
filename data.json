@@ -18,11 +18,25 @@
   },
   "users": [
     {
-      "name": "Chloe Cervantes",
-      "username": "tuxyk",
-      "email": "cilo@mailinator.com",
-      "password": "Cupidatat molestias ",
-      "id": 1
+      "id": 1,
+      "name": "Mohammad Rose",
+      "username": "luwuja",
+      "email": "qoxuki@mailinator.com",
+      "password": "Dolorum omnis ipsam "
+    },
+    {
+      "name": "Ferdinand Weiss",
+      "username": "lewolev",
+      "email": "diqy@mailinator.com",
+      "password": "Perferendis sunt rec",
+      "id": 2
+    },
+    {
+      "name": "Sheila William",
+      "username": "balaqiro",
+      "email": "mexesozip@mailinator.com",
+      "password": "Aut natus voluptatem",
+      "id": 3
     }
   ]
 }
