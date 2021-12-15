@@ -4,9 +4,10 @@ import App from "./App.vue";
 import "./index.css";
 import router from "./router";
 import store from "./store";
+import appAxios from "./utils/appAxios";
 
-createApp(App)
-  // TEset
-  .use(store)
-  .use(router)
-  .mount("#app");
+const app = createApp(App);
+app.use(router);
+app.use(store);
+app.provide("appAxios", appAxios);
+app.mount("#app");

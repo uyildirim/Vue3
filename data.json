@@ -15,5 +15,21 @@
   ],
   "profile": {
     "name": "typicode"
-  }
+  },
+  "todo": [
+    {
+      "id": 1,
+      "title": "Vue 3 Öğren",
+      "description": "Öğrenmek için tüm youtube sayfalarına bak",
+      "complated": false,
+      "date": "2021-12-05T17:34:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "NodeJs Experss Öğren",
+      "description": "ResFull api ögren",
+      "complated": false,
+      "date": "2021-12-27T17:34:00.000Z"
+    }
+  ]
 }
