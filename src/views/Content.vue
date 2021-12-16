@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <div id="content" class="my-7 mx-14">
+    <div id="content" class="my-7 mx-14 space-y-2">
       <TodoList :TodoList="TodoListItem" @item-checkbox="item" />
       <div>
         <AddTodo @save="save" />
@@ -32,8 +32,10 @@ const modelData = (data) => {
   showModal.value = true;
   model.value = data;
 };
-const save = (e) => {
-  TodoListItem.value.push({ ...e });
+const save = (data) => {
+  console.log(data);
+  // TodoListItem.value.push({ ...data });
+  appAxios.post("todo", data);
 };
 const item = (item) => {
   console.log(item);

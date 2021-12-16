@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col border rounded mt-3 transition-all duration-1000">
+  <div class="flex flex-col border rounded transition-all duration-1000">
     <TitleInput v-model="todoItem.title" />
     <DescriptionTextarea v-model="todoItem.description" />
     <ActionInput @save="$emit('save', todoItem)" @cancel="$emit('cancel')" />
@@ -35,5 +35,4 @@ const sil = () => {
 };
 </script>
 
-<style>
-</style>
+<style></style>

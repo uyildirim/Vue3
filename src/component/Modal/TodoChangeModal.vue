@@ -1,31 +1,33 @@
 <template>
   <div
-    @click="$emit('modal', false)"
+    @click="modalClick"
     class="modal-overlay absolute inset-0 flex justify-center bg-[#000000da]"
   >
     <div @click.stop class="absolute top-10 shadow rounded-md overflow-hidden">
       <div class="bg-white px-5 py-5 w-[500px] space-y-2">
+        <!-- model-header -->
         <div id="model-header" class="flex items-center justify-between">
           <div class="flex items-center space-x-2">
             <FolderIcon class="w-5 h-5 inline-block" />
-            <span>Klasör</span>
+            <span>Klasör</span>{{ modalShow }}
           </div>
-          <button @click="$emit('modal', false)" class="hover:bg-gray-100">
+          <button @click="modalClick" class="hover:bg-gray-100">
             <XIcon class="h-5 w-5" />
           </button>
         </div>
-        <div class="flex space-x-4">
+        <!--End model-header -->
+        <div class="flex space-x-4" v-show="modalShow">
           <div class="">
             <input class="w-5 h-5" type="checkbox" />
           </div>
-          <div class="w-full">
+          <div class="w-full" @click="modalShow = false">
             <div class="mb-2">
               <span class="font-semibold">{{ data.title }}</span>
             </div>
             <div class="mb-6">
-              <span class="text-sm">{{ data.text }}</span>
+              <span class="text-sm">{{ data.description }}</span>
             </div>
-            <div class="flex items-center justify-between">
+            <div id="date-time" class="flex items-center justify-between">
               <div
                 class="
                   text-red-500
@@ -44,14 +46,25 @@
                 <span class="ml-1">{{ NewDate(data.date) || "" }}</span>
               </div>
               <div class="flex items-center text-gray-600">
-                <span class="p-1 rounded hover:bg-gray-200"><FlagIcon class="w-6 h-6" /></span>
-                <span class="p-1 rounded hover:bg-gray-200"><ClockIcon class="w-6 h-6" /></span>
-                <span class="p-1 rounded hover:bg-gray-200"><TagIcon class="w-6 h-6" /></span>
+                <span class="p-1 rounded hover:bg-gray-200"
+                  ><FlagIcon class="w-6 h-6"
+                /></span>
+                <span class="p-1 rounded hover:bg-gray-200"
+                  ><ClockIcon class="w-6 h-6"
+                /></span>
+                <span class="p-1 rounded hover:bg-gray-200"
+                  ><TagIcon class="w-6 h-6"
+                /></span>
               </div>
             </div>
           </div>
         </div>
-        <AddTodoIndex @save="save" @cancel="$emit('modal', false)" :item="data" />
+        <AddTodoIndex
+          v-show="!modalShow"
+          @save="save"
+          @cancel="modalClick"
+          :item="data"
+        />
       </div>
     </div>
   </div>
@@ -67,7 +80,8 @@ import {
   ClockIcon,
   TagIcon,
 } from "@heroicons/vue/outline";
-
+import { ref } from "vue";
+const emit = defineEmits(["modal"]);
 defineProps({
   data: {
     type: Object,
@@ -101,7 +115,12 @@ const save = (item) => {
   console.log(item);
 };
 console.log(NewDate());
+
+const modalShow = ref(true);
+const modalClick = () => {
+  modalShow.value = true;
+  emit("modal", false);
+};
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

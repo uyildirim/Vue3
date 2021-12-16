@@ -1,6 +1,6 @@
 <template>
   <input
-    class="outline-none w-full px-1 pl-2 py-1 bg-yellow-100"
+    class="outline-none w-full px-1 pl-2 py-1"
     placeholder="ör., 2 günde bir Portekizce öğren #Öğrenme"
     type="text"
     :value="modelValue"
@@ -12,5 +12,4 @@
 defineProps(["modelValue"]);
 </script>
 
-<style>
-</style>
+<style></style>
