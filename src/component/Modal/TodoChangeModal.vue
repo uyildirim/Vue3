@@ -45,7 +45,7 @@
                 <CalendarIcon class="w-4 h-4" />
                 <span class="ml-1">{{ NewDate(data.date) || "" }}</span>
               </div>
-              <div class="flex items-center text-gray-600">
+              <div @click.stop class="flex items-center text-gray-600">
                 <span class="p-1 rounded hover:bg-gray-200"
                   ><FlagIcon class="w-6 h-6"
                 /></span>
@@ -62,7 +62,7 @@
         <AddTodoIndex
           v-show="!modalShow"
           @save="save"
-          @cancel="modalClick"
+          @cancel="modalShow = true"
           :item="data"
         />
       </div>

@@ -1,38 +1,15 @@
 <template>
   <div class="flex items-center justify-between">
-    <div class="w-36 m-2 flex items-center relative">
-      <!-- <Datepicker
-        v-model="addTodoItem.date"
-        :clearable="true"
-        ref="dp"
-        :enableTimePicker="false"
-        :format="format"
-        :previewFormat="format"
-      >
-        <template #dp-input="{ value, onInput, onEnter, onTab }">
-            <div class="flex items-center gap-2 p-1 border rounded text-sm font-light">
-              <CalendarIcon class="w-5 h-5" />
-              <input
-                placeholder="Zaman ayarla"
-                class="w-full outline-none"
-                type="text"
-                :value="value"
-              />
-            </div>
-          </template>
-          <template #calendar-header="{ index, day }">
-            <div :class="index === 5 || index === 6 ? 'red-color' : ''">
-              {{ day }}
-            </div>
-          </template>
+    <div class="m-2 flex items-center relative">
+      <Datepicker v-model="date" :enableTimePicker="false" ref="dp">
         <template #action-select>
-          <p class="bg-green-600 text-white text-center" @click="selectDate">Uygula</p>
+          <p class="custom-select" @click="selectDate">Select</p>
         </template>
-        <template #clear-icon> x </template>
-      </Datepicker> -->
+      </Datepicker>
+
       <!-- <BackspaceIcon class="w-4 h-4 text-red-500 absolute right-2" v-show="date" @click="sil" /> -->
     </div>
-    <div class="space-x-2 mr-2">
+    <div class="space-x-2 p-2">
       <button
         @click="$emit('cancel')"
         class="bg-red-600 text-white px-3 py-1 text-sm font-light"
@@ -54,7 +31,11 @@ import { ref } from "vue";
 import Datepicker from "vue3-date-time-picker";
 import "vue3-date-time-picker/dist/main.css";
 
+const date = ref(new Date());
 const dp = ref();
+const selectDate = () => {
+  dp.value.selectDate();
+};
 </script>
 
 <style></style>

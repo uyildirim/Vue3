@@ -9,12 +9,24 @@
         <input
           v-model="item.complated"
           @change="change(item)"
-          class="form-checkbox rounded-full border border-gray-500 ring-0 w-[18px] h-[18px] mr-2"
+          class="
+            form-checkbox
+            rounded-full
+            border border-gray-500
+            ring-0
+            w-[18px]
+            h-[18px]
+            mr-2
+          "
           type="checkbox"
         />
       </div>
       <div>
-        <span @click="modalData(item)" class="text-sm" :class="{ 'line-through': item.complated }">
+        <span
+          @click="modalData(item)"
+          class="text-sm"
+          :class="{ 'line-through': item.complated }"
+        >
           {{ item.title }}
         </span>
         <div
@@ -26,7 +38,11 @@
         </div>
       </div>
     </div>
-    <TodoChangeModal v-show="modalVisable" :data="data" @modal="modalVisable = false" />
+    <TodoChangeModal
+      v-show="modalVisable"
+      :data="data"
+      @modal="modalVisable = false"
+    />
   </div>
 </template>
 
@@ -78,5 +94,4 @@ const modalData = (item) => {
 };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>
