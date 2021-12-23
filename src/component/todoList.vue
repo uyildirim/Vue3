@@ -9,24 +9,12 @@
         <input
           v-model="item.complated"
           @change="change(item)"
-          class="
-            form-checkbox
-            rounded-full
-            border border-gray-500
-            ring-0
-            w-[18px]
-            h-[18px]
-            mr-2
-          "
+          class="form-checkbox rounded-full border border-gray-500 ring-0 w-[18px] h-[18px] mr-2"
           type="checkbox"
         />
       </div>
       <div>
-        <span
-          @click="modalData(item)"
-          class="text-sm"
-          :class="{ 'line-through': item.complated }"
-        >
+        <span @click="modalData(item)" class="text-sm" :class="{ 'line-through': item.complated }">
           {{ item.title }}
         </span>
         <div
@@ -38,17 +26,16 @@
         </div>
       </div>
     </div>
-    <TodoChangeModal
-      v-show="modalVisable"
-      :data="data"
-      @modal="modalVisable = false"
-    />
+    <TodoChangeModal v-show="modalVisable" :data="data" @modal="modalVisable = false" />
+    <button class="navbar__dropdown-toggle" aria-expanded="active ? 'true' : 'false'">
+      expanded
+    </button>
   </div>
 </template>
 
 <script setup>
 defineProps(["TodoList"]);
-import { inject, ref } from "vue";
+import { inject, provide, ref } from "vue";
 import { CalendarIcon } from "@heroicons/vue/outline";
 import TodoChangeModal from "./Modal/TodoChangeModal.vue";
 const appAxios = inject("appAxios");
@@ -92,6 +79,8 @@ const modalData = (item) => {
   data.value = item;
   modalVisable.value = true;
 };
+
+provide("modalShow", modalVisable);
 </script>
 
 <style scoped></style>

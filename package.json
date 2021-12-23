@@ -12,10 +12,12 @@
     "@heroicons/vue": "^1.0.5",
     "axios": "^0.24.0",
     "gitart-vue-dialog": "^1.1.0",
+    "vee-validate": "^4.5.7",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12",
     "vue3-date-time-picker": "^2.3.5",
-    "vuex": "^4.0.2"
+    "vuex": "^4.0.2",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@tailwindcss/custom-forms": "^0.2.1",

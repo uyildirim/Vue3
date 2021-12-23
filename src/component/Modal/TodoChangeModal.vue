@@ -1,9 +1,9 @@
 <template>
   <div
     @click="modalClick"
-    class="modal-overlay absolute inset-0 flex justify-center bg-[#000000da]"
+    class="modal-overlay absolute inset-0 flex justify-center bg-[#000000da] z-10"
   >
-    <div @click.stop class="absolute top-10 shadow rounded-md overflow-hidden">
+    <div @click.stop class="absolute top-10 shadow rounded-md">
       <div class="bg-white px-5 py-5 w-[500px] space-y-2">
         <!-- model-header -->
         <div id="model-header" class="flex items-center justify-between">
@@ -46,25 +46,13 @@
                 <span class="ml-1">{{ NewDate(data.date) || "" }}</span>
               </div>
               <div @click.stop class="flex items-center text-gray-600">
-                <span class="p-1 rounded hover:bg-gray-200"
-                  ><FlagIcon class="w-6 h-6"
-                /></span>
-                <span class="p-1 rounded hover:bg-gray-200"
-                  ><ClockIcon class="w-6 h-6"
-                /></span>
-                <span class="p-1 rounded hover:bg-gray-200"
-                  ><TagIcon class="w-6 h-6"
-                /></span>
+                <Flag />
+                <Tag />
               </div>
             </div>
           </div>
         </div>
-        <AddTodoIndex
-          v-show="!modalShow"
-          @save="save"
-          @cancel="modalShow = true"
-          :item="data"
-        />
+        <AddTodoIndex v-show="!modalShow" @save="save" @cancel="modalShow = true" :item="data" />
       </div>
     </div>
   </div>
@@ -80,7 +68,10 @@ import {
   ClockIcon,
   TagIcon,
 } from "@heroicons/vue/outline";
-import { ref } from "vue";
+import { provide, ref } from "vue";
+import Flag from "../ActionGroup/Flag.vue";
+import Tag from "../ActionGroup/Tag.vue";
+
 const emit = defineEmits(["modal"]);
 defineProps({
   data: {
