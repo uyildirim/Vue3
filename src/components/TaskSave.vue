@@ -19,24 +19,24 @@ import { ref } from "vue";
 import Task from "../Entities/Task";
 
 defineProps(["open"]);
-const emit = defineEmits(["close", "save"]);
+const emit = defineEmits(["close", "save", "task"]);
 const task = ref();
 
 const taskSave = () => {
-  let newTask = new Task();
-  newTask.setText(task.value);
-
-  fetch("http://localhost:3000/tasks", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newTask),
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      emit("save", res);
-      emit("close");
-    })
-    .catch((err) => console.error(err));
+  emit("task", task.value);
+  // let newTask = new Task();
+  // newTask.setText(task.value);
+  // fetch("http://localhost:3000/tasks", {
+  //   method: "POST",
+  //   headers: { "Content-Type": "application/json" },
+  //   body: JSON.stringify(newTask),
+  // })
+  //   .then((res) => res.json())
+  //   .then((res) => {
+  //     emit("save", res);
+  //     emit("close");
+  //   })
+  //   .catch((err) => console.error(err));
 };
 </script>
 

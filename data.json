@@ -3,7 +3,7 @@
     {
       "id": 1,
       "text": "Kitap Oku",
-      "completed": true
+      "completed": false
     },
     {
       "id": 2,
@@ -16,28 +16,10 @@
       "completed": true
     },
     {
-      "text": "newTask 1",
-      "date": "12/26/2021",
-      "completed": false,
-      "id": 5
-    },
-    {
       "text": "postman",
       "date": "12/26/2021",
       "completed": true,
       "id": 6
-    },
-    {
-      "text": "resss",
-      "date": "12/27/2021",
-      "completed": false,
-      "id": 8
-    },
-    {
-      "text": "ekleme",
-      "date": "12/27/2021",
-      "completed": true,
-      "id": 9
     }
   ],
   "comments": [],

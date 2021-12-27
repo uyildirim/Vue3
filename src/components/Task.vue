@@ -11,7 +11,7 @@
     </label>
 
     <!-- Edit -->
-    <button class="group-hover:block hidden bg-yellow-500 h-full px-1 text-white">
+    <button @click="update(todo)" class="group-hover:block hidden bg-yellow-500 h-full px-1 text-white">
       <svg xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24">
         <path d="M0 0h24v24H0V0z" fill="none" />
         <path
@@ -32,7 +32,14 @@
 </template>
 
 <script setup>
+import { ref } from "vue";
+
 defineProps(["todo"]);
+
+const update = (item) => {
+  console.log("Update", item);
+};
+
 const emit = defineEmits(["deleteTask"]);
 const taskDelete = (item) => {
   fetch(`http://localhost:3000/tasks/${item.id}`, { method: "DELETE" })
