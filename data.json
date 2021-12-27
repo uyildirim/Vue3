@@ -1,19 +1,47 @@
 {
-  "posts": [
+  "tasks": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "text": "Kitap Oku",
+      "completed": true
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 2,
+      "text": "Vue Öğren",
+      "completed": true
+    },
+    {
+      "id": 3,
+      "text": "React Native Öğren",
+      "completed": true
+    },
+    {
+      "text": "newTask 1",
+      "date": "12/26/2021",
+      "completed": false,
+      "id": 5
+    },
+    {
+      "text": "postman",
+      "date": "12/26/2021",
+      "completed": true,
+      "id": 6
+    },
+    {
+      "text": "resss",
+      "date": "12/27/2021",
+      "completed": false,
+      "id": 8
+    },
+    {
+      "text": "ekleme",
+      "date": "12/27/2021",
+      "completed": true,
+      "id": 9
     }
   ],
+  "comments": [],
   "profile": {
-    "name": "typicode"
+    "name": "test"
   }
 }

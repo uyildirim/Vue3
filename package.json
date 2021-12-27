@@ -5,9 +5,12 @@
     "dev": "vite",
     "build": "vite build",
     "serve": "vite preview",
-    "json": "json-server data.json -w"
+    "json": "json-server data.json -w",
+    "json-d": "json-server data.json -w -d 300"
   },
   "dependencies": {
+    "@headlessui/vue": "^1.4.2",
+    "@tailwindcss/forms": "^0.4.0",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"
