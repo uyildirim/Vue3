@@ -1,6 +1,6 @@
 <template>
   <!-- This example requires Tailwind CSS v2.0+ -->
-  <div v-show="open" class="fixed inset-0">
+  <div class="fixed inset-0">
     <div class="flex justify-center items-center h-full">
       <div @click="$emit('close')" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
 
@@ -15,13 +15,15 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import Task from "../Entities/Task";
 
-defineProps(["open"]);
-const emit = defineEmits(["close", "save", "task"]);
 const task = ref();
 
+const props = defineProps(["update"]);
+const emit = defineEmits(["close", "save", "task"]);
+
+console.log("TaskSaveModal Load");
 const taskSave = () => {
   emit("task", task.value);
   // let newTask = new Task();
@@ -38,6 +40,10 @@ const taskSave = () => {
   //   })
   //   .catch((err) => console.error(err));
 };
+
+onMounted(() => {
+  console.log(props?.update);
+});
 </script>
 
 <style>

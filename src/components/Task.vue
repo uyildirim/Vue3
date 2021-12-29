@@ -33,19 +33,21 @@
 
 <script setup>
 import { ref } from "vue";
+import TaskService from "../Service/TaskService";
+import TaskSave from "./TaskSave.vue";
 
 defineProps(["todo"]);
 
 const update = (item) => {
-  console.log("Update", item);
+  emits("update", item);
 };
 
-const emit = defineEmits(["deleteTask"]);
+const emits = defineEmits(["deleteTask", "update"]);
 const taskDelete = (item) => {
   fetch(`http://localhost:3000/tasks/${item.id}`, { method: "DELETE" })
     .then((res) => res.json())
     .then((data) => {
-      emit("deleteTask", item);
+      emits("deleteTask", item);
     });
 };
 const toggle = (item) => {

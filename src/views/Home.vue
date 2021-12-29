@@ -19,13 +19,14 @@
       <div id="todo-list">
         <ul class="max-h-64 overflow-y-auto">
           <li v-for="todo in todos" :key="todo.id">
-            <Task :todo="todo" @deleteTask="deleteTask" />
+            <Task :todo="todo" @deleteTask="deleteTask" @update="update" />
           </li>
         </ul>
       </div>
     </div>
   </div>
-  <TaskSave :open="open" @close="open = false" @task="taskSave" />
+  <TaskSave v-if="open" @close="open = false" @task="taskSave" />
+  <TaskSave v-if="editModal" @close="editModal = false" :update="update" />
 </template>
 
 <script setup>
@@ -34,10 +35,11 @@ import Task from "../components/Task.vue";
 import TaskSave from "../components/TaskSave.vue";
 import TaskStatus from "../components/TaskStatus.vue";
 import TaskCreate from "../Entities/Task";
+import TaskService from "../Service/TaskService";
 
 const open = ref(false);
+const editModal = ref(false);
 const todos = ref([]);
-
 onMounted(() => {
   fetch("http://localhost:3000/tasks")
     .then((res) => res.json())
@@ -48,24 +50,23 @@ const deleteTask = (item) => {
   todos.value = todos.value.filter((todo) => todo.id !== item.id);
 };
 const taskSave = (item) => {
-  console.log(item);
-  let newTask = new TaskCreate();
-  newTask.setText(item);
-  console.log(newTask);
-  fetch("http://localhost:3000/tasks", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(newTask),
-  })
+  const taskService = new TaskService();
+  taskService
+    .save(item)
     .then((res) => res.json())
-    .then((res) => {
-      todos.value.push(res);
+    .then((data) => {
+      todos.value.push(data);
       open.value = false;
-    })
-    .catch((err) => console.error(err));
+    });
 };
 const todoStatus = (item) => {
   todos.value = item;
+};
+const update = (item) => {
+  editModal.value = true;
+  return item;
+  // let taskService = new TaskService();
+  // taskService.update(item);
 };
 </script>
 
