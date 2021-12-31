@@ -9,28 +9,27 @@
             <path fill="#fff" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
           </svg>
         </button>
-        <div id="comlated" class="text-6xl mr-2">1</div>
+        <div id="comlated" class="text-6xl mr-2">{{ taskCount }}</div>
         <div id="task">
           <div>Tasks</div>
-          <div>/ 3</div>
+          <div>/ {{ taskLength }}</div>
         </div>
       </div>
       <TaskStatus @todos="todoStatus" />
       <div id="todo-list">
         <ul class="max-h-64 overflow-y-auto">
           <li v-for="todo in todos" :key="todo.id">
-            <Task :todo="todo" @deleteTask="deleteTask" @update="update" />
+            <Task :todo="todo" @deleteTask="deleteTask" />
           </li>
         </ul>
       </div>
     </div>
   </div>
   <TaskSave v-if="open" @close="open = false" @task="taskSave" />
-  <TaskSave v-if="editModal" @close="editModal = false" :update="update" />
 </template>
 
 <script setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
 import Task from "../components/Task.vue";
 import TaskSave from "../components/TaskSave.vue";
 import TaskStatus from "../components/TaskStatus.vue";
@@ -44,6 +43,23 @@ onMounted(() => {
   fetch("http://localhost:3000/tasks")
     .then((res) => res.json())
     .then((data) => (todos.value = data));
+});
+const taskLength = computed(() => {
+  return todos.value.length;
+});
+
+const taskCount = computed(() => {
+  let task = todos.value.filter((item) => item["completed"] == true);
+  return task.length;
+});
+const taskCount1 = computed(() => {
+  let todoCount = todos.value.reduce((acc, item) => {
+    if (item.completed) {
+      acc.push(item);
+    }
+    return acc;
+  }, []);
+  return todoCount.length;
 });
 
 const deleteTask = (item) => {
@@ -61,12 +77,6 @@ const taskSave = (item) => {
 };
 const todoStatus = (item) => {
   todos.value = item;
-};
-const update = (item) => {
-  editModal.value = true;
-  return item;
-  // let taskService = new TaskService();
-  // taskService.update(item);
 };
 </script>
 

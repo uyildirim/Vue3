@@ -7,7 +7,8 @@
         @change="toggle(todo)"
         class="text-indigo-500 ring-2 ring-indigo-500 w-4 h-4 mr-2 ml-4 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-0 border border-gray-300 rounded-full"
       />
-      {{ todo.text }}
+      {{ !editing ? todo.text : null }}
+      <input @focusout="edit(todo)" v-if="editing" v-model="todo.text" class="p-0 m-0 border-0 border-b text-sm font-light" type="text" />
     </label>
 
     <!-- Edit -->
@@ -38,8 +39,11 @@ import TaskSave from "./TaskSave.vue";
 
 defineProps(["todo"]);
 
+const editing = ref(false);
+
 const update = (item) => {
-  emits("update", item);
+  editing.value = true;
+  console.log(item);
 };
 
 const emits = defineEmits(["deleteTask", "update"]);
@@ -56,6 +60,19 @@ const toggle = (item) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ completed: item.completed }),
   });
+};
+const edit = (item) => {
+  console.log(item);
+  fetch(`http://localhost:3000/tasks/${item.id}`, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ text: item.text }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      editing.value = false;
+      console.log(data);
+    });
 };
 </script>
 

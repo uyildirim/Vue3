@@ -2,24 +2,25 @@
   "tasks": [
     {
       "id": 1,
-      "text": "Kitap Oku",
-      "completed": false
-    },
-    {
-      "id": 2,
-      "text": "Vue Öğren",
-      "completed": false
+      "text": "Kitap Okqqqs",
+      "completed": true
     },
     {
       "id": 3,
       "text": "React Native Öğren",
-      "completed": true
+      "completed": false
     },
     {
       "text": "postman",
       "date": "12/26/2021",
       "completed": true,
       "id": 6
+    },
+    {
+      "text": "test",
+      "date": "12/30/2021",
+      "completed": false,
+      "id": 7
     }
   ],
   "comments": [],
