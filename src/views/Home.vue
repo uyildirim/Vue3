@@ -1,9 +1,11 @@
 <template>
-  <h1>Home Page</h1>
+  <div class="flex justify-center w-full h-screen">
+    <BlogHome />
+  </div>
 </template>
 
-<script>
-export default {};
+<script setup>
+import BlogHome from "./blog/BlogHome.vue";
 </script>
 
 <style></style>

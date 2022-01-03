@@ -2,8 +2,59 @@
   "posts": [
     {
       "id": 1,
-      "title": "json-server",
-      "author": "typicode"
+      "title": "Pariatur officia vero voluptates",
+      "author": "admin",
+      "date": "20-12-25",
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur officia vero voluptates, quidem incidunt voluptatibus? Lorem ipsum dolor sit amet",
+      "views": 4,
+      "image": "https://source.unsplash.com/900x900/?beach"
+    },
+    {
+      "id": 2,
+      "title": "Pariatur officia vero voluptates",
+      "author": "admin",
+      "date": "20-12-25",
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur officia vero voluptates, quidem incidunt voluptatibus? Lorem ipsum dolor sit amet",
+      "views": 4,
+      "image": "https://source.unsplash.com/900x900/?beach",
+      "categoryId": 2
+    },
+    {
+      "id": 3,
+      "title": "Pariatur officia vero voluptates",
+      "author": "admin",
+      "date": "20-12-25",
+      "body": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur officia vero voluptates, quidem incidunt voluptatibus? Lorem ipsum dolor sit amet",
+      "views": 4,
+      "image": "https://source.unsplash.com/300x300/?beach",
+      "categoryId": 3
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "text": "Teknoloji",
+      "value": "teknoloji"
+    },
+    {
+      "id": 4,
+      "text": "Araba",
+      "value": "araba"
+    },
+    {
+      "id": 2,
+      "text": "Bilim",
+      "value": "bilim"
+    },
+    {
+      "id": 3,
+      "text": "Hayat",
+      "value": "hayat"
+    },
+    {
+      "text": "Gezi",
+      "value": "gezi",
+      "id": 5
     }
   ],
   "comments": [

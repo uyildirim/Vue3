@@ -8,6 +8,7 @@
     "json": "json-server data.json -w"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"
