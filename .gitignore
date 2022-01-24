@@ -4,3 +4,6 @@ dist
 dist-ssr
 *.local
 data
+.env
+src/firebase/config.js
+src/firebase/firebaseConfig.js

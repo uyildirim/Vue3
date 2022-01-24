@@ -1,9 +1,9 @@
 <template>
   <section>
-    <Category />
+    <!-- <Category /> -->
   </section>
   <section>
-    <RecentPosts />
+    <!-- <RecentPosts /> -->
   </section>
   <!-- <section>
     <h1 class="font-semibold text-2xl p-3 border-b">Tag</h1>
@@ -16,8 +16,8 @@
 </template>
 
 <script setup>
-import Category from "../../components/Category/Category.vue";
-import RecentPosts from "../../components/RecentPosts/RecentPosts.vue";
+// import Category from "../../components/Category/Category.vue";
+// import RecentPosts from "../../components/RecentPosts/RecentPosts.vue";
 </script>
 
 <style></style>

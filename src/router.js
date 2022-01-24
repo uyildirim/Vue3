@@ -3,6 +3,7 @@ import Home from "./views/Home.vue";
 import About from "./views/About.vue";
 import AddPost from "./views/AddPost.vue"
 import AddCategory from "./views/Category.vue"
+import AddUser from "./views/user/addUser.vue"
 const routes = [
     {
         path: "/",
@@ -23,6 +24,11 @@ const routes = [
         path: "/add-category",
         name: "AddCategory",
         component: AddCategory
+    },
+    {
+        path: "/add-user",
+        name: "AddUser",
+        component: AddUser
     },
 ];
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow w-80 mt-14 ml-14 p-3">
+  <div class="shadow w-[500px] h-full mt-14 ml-14 p-3">
     <h1 class="mb-3 bg-gray-400 text-center p-2 text-gray-50">Add New Post</h1>
 
     <div>
@@ -12,35 +12,40 @@
     </div>
     <div>
       <label>Description</label>
-      <textarea v-model="post.body" class="w-full border" rows="5"></textarea>
+      <!-- <textarea v-model="post.content" class="w-full border" rows="5"></textarea> -->
+      <QuillEditor v-model:content="post.content" contentType="html" theme="snow" />
     </div>
     <div class="text-right space-x-3">
       <button @click="$router.back()" class="bg-pink-500 text-white py-1 px-2 rounded-md">
         Cancel
       </button>
-      <button
-        @click="
-          save();
-          $router.back();
-        "
-        class="bg-indigo-500 text-white py-1 px-2 rounded-md"
-      >
-        Save
-      </button>
+      <button @click="save()" class="bg-indigo-500 text-white py-1 px-2 rounded-md">Save</button>
     </div>
   </div>
+  <h1>Content Type</h1>
+  {{ post }}
 </template>
 
 <script setup>
 import axios from "axios";
 import { ref } from "vue";
+import { createPost } from "../firebase/post";
+import postModel from "../model/postModel";
+
+import { QuillEditor } from "@vueup/vue-quill";
+import "@vueup/vue-quill/dist/vue-quill.snow.css";
 
 const post = ref({
+  content: null,
   image: "https://source.unsplash.com/900x900/?beach",
 });
 
 const save = () => {
-  axios.post("http://localhost:3000/posts", post.value);
+  const newPost = new postModel(post.value);
+
+  const contentDelta = new Delta(post.value.content);
+  console.log(JSON.stringify(contentDelta));
+  // createPost({ ...post.value, userID: 3 });
 };
 </script>
 

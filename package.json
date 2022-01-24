@@ -8,8 +8,12 @@
     "json": "json-server data.json -w"
   },
   "dependencies": {
+    "@vueup/vue-quill": "^1.0.0-beta.7",
     "axios": "^0.24.0",
-    "vue": "^3.2.16",
+    "dotenv": "^12.0.3",
+    "firebase": "^8.6.5",
+    "moment": "^2.29.1",
+    "vue": "^3.2.26",
     "vue-router": "^4.0.12",
     "vuex": "^4.0.2"
   },
