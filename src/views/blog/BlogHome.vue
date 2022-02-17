@@ -1,13 +1,12 @@
 <template>
-  <div class="w-[900px] flex-shrink-0">
-    <div id="header" class="p-3 bg-gray-200">
+  <div class="w-[1200px] flex-shrink-0">
+    <div id="header" class=" ">
       <Header />
     </div>
-    <div id="content" class="flex justify-between">
-      <BlogContent />
-      <div class="w-3/12 flex-shrink-0">
-        <BlogSidebar />
-      </div>
+    <Banner class="w-full" />
+    <div id="content" class="flex">
+      <BlogContent class="w-[792px]" />
+      <BlogSidebar class="w-[384]" />
     </div>
     <div></div>
   </div>
@@ -17,6 +16,7 @@
 import Header from "./Header.vue";
 import BlogContent from "./BlogContent.vue";
 import BlogSidebar from "./BlogSidebar.vue";
+import Banner from "./Banner.vue";
 </script>
 
 <style></style>

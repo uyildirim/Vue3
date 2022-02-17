@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full mr-3">
+  <div class="w-full flex flex-col mr-3">
     <div class="font-semibold text-2xl border-b py-3 mb-4">Blog Header</div>
     <div
       v-for="item in post"
